@@ -1,0 +1,11 @@
+{
+  "firstname": "",
+  "lastname": "",
+  "totalprice": "",
+  "depositpaid": "",
+  "bookingdates": {
+    "checkin": "",
+    "checkout": ""
+  },
+  "additionalneeds": ""
+}
