@@ -1,3 +1,4 @@
+@regresion-postAuth
 Feature: Restful-Booker
 
   Background:

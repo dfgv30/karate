@@ -27,8 +27,8 @@ Feature: POST-create-Restful-Booker
     Then status 200
     * print response
     Examples:
-      | id   | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
-      | 1597 | Cazador   | Wun      | 111        | true        | 2006-04-30 | 2007-04-30 | dinner          |
+      | id | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
+      | 142  | Cazador   | Wun      | 111        | true        | 2006-04-30 | 2007-04-30 | dinner          |
 
   @e07a
   Scenario Outline:  E07a-PUT-400: update book. Header content-type incorrecto
@@ -79,10 +79,10 @@ Feature: POST-create-Restful-Booker
     * print response
     Examples:
       | accept        | id   | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
-      | a             | 1597 | Cazador   | Wun      | 111        | true        | 2006-04-30 | 2007-04-30 | dinner          |
-      | 2342623446533 | 1597 | Cazador   | Wun      | 111        | true        | 2006-04-30 | 2007-04-30 | dinner          |
-      | kas304sjh92   | 1597 | Cazador   | Wun      | 111        | true        | 2006-04-30 | 2007-04-30 | dinner          |
-      |               | 1597 | Cazador   | Wun      | 111        | true        | 2006-04-30 | 2007-04-30 | dinner          |
+      | a             | 1286 | Cazador   | Wun      | 111        | true        | 2006-04-30 | 2007-04-30 | dinner          |
+      | 2342623446533 | 1286 | Cazador   | Wun      | 111        | true        | 2006-04-30 | 2007-04-30 | dinner          |
+      | kas304sjh92   | 1286 | Cazador   | Wun      | 111        | true        | 2006-04-30 | 2007-04-30 | dinner          |
+      |               | 1286    | Cazador   | Wun      | 111        | true        | 2006-04-30 | 2007-04-30 | dinner          |
 
   @e07c
   Scenario Outline:  E07c-PUT-403: update book. Header Cookie incorrecto
@@ -155,4 +155,33 @@ Feature: POST-create-Restful-Booker
       | 142 | Cazador   | Wun      | 111        | true        | 2006-04-99 | 2007-99-30 | dinner          |
       | 142 | Cazador   | Wun      | 111        | true        | 2006-04-99 | 2007-04-99 | dinner          |
       | 142 | Cazador   | Wun      | 111        | true        | 2006-04-30 | 2007-04-30 |                 |
+
+  @e07e
+  Scenario Outline:  E07e-PUT-400: body incompleto
+    * def fullUrl = baseUrl + '/' + '<id>'
+    Given url fullUrl
+    * body.firstname = '<firstname>'
+    * body.lastname = '<lastname>'
+    * body.totalprice = <totalprice>
+    * body.depositpaid = <depositpaid>
+    * body.bookingdates.checkin = '<checkin>'
+    * body.bookingdates.checkout = '<checkout>'
+    * body.additionalneeds = '<additionalneeds>'
+    * remove body.<field>
+    * print body
+    * request body
+    * header.Cookie = 'token=' + token
+    * print header
+    Given headers header
+    When method put
+    Then status 400
+    * print response
+    Examples:
+      | field                 | id  | firstname | lastname | totalprice | depositpaid | checkin    | checkout   | additionalneeds |
+      | firstname             | 142 | Sung Jin  | Woo      | 666        | true        | 2006-04-30 | 2007-04-30 | Anime           |
+      | lastname              | 142 | Sung Jin  | Woo      | 666        | true        | 2006-04-30 | 2007-04-30 | Anime           |
+      | totalprice            | 142 | Sung Jin  | Woo      | 666        | true        | 2006-04-30 | 2007-04-30 | Anime           |
+      | depositpaid           | 142 | Sung Jin  | Woo      | 666        | true        | 2006-04-30 | 2007-04-30 | Anime           |
+      | bookingdates.checkin  | 142 | Sung Jin  | Woo      | 666        | true        | 2006-04-30 | 2007-04-30 | Anime           |
+      | bookingdates.checkout | 142   | Sung Jin  | Woo      | 666        | true        | 2006-04-30 | 2007-04-30 | Anime           |
 

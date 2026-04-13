@@ -1,3 +1,4 @@
+@regresion-get
 Feature: GET-Restful-Booker
 
   Background:
@@ -47,5 +48,5 @@ Feature: GET-Restful-Booker
     Then status 200
     * print response
     Examples:
-      | id   |
-      | 3507 |
+      | id  |
+      | 901 |
