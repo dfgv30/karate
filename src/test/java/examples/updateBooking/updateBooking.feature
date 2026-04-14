@@ -1,5 +1,5 @@
 @regresion-update
-Feature: POST-create-Restful-Booker
+Feature: PUT-create-Restful-Booker
 
   Background:
     * call read('classpath:examples/postAuth/postAuth.feature@happypath')
@@ -111,6 +111,7 @@ Feature: POST-create-Restful-Booker
       |           | 1597 | Cazador   | Wun      | 111        | true        | 2006-04-30 | 2007-04-30 | dinner          |
 
   @e07d
+    #Este scenario no debería de tener status 200, porque no cumple con el formato del body correcto, pero se entiende que es una API BÁSICA
   Scenario Outline:  E07d-PUT-200: Body incorrecto
     * def fullUrl = baseUrl + '/' + '<id>'
     Given url fullUrl

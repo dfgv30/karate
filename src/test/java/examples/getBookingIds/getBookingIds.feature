@@ -6,6 +6,7 @@ Feature: GET-Restful-Booker
     * def header = read('classpath:headers/getBookingIds-headers.json')
     #* def param = read('classpath:param/users-param.json')
 
+  #GetBookingIds
   @e02 @happypath
   Scenario: E02-GET-200: check all ID
     Given url baseUrl
@@ -37,6 +38,7 @@ Feature: GET-Restful-Booker
       | checkin    | checkout   |
       | 2014-03-13 | 2014-05-21 |
 
+    #GetBooking
   @e05 @happypath
   Scenario Outline: E05-GET-200: check ID
     * def fullUrl = baseUrl + '/' + '<id>'
